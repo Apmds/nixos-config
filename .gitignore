@@ -1,5 +1,6 @@
 *
 !*/
 !.gitignore
-
 nvim/.gitignore
+
+!home-manager/**
