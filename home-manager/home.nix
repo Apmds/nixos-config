@@ -14,7 +14,10 @@ let
 in
 {
   imports = [
-    spicetify-flake.homeManagerModules.default
+    ./gtk.nix
+    ./spicetify.nix
+    ./starship.nix
+    ./desktop-files.nix
   ];
  
   nixpkgs.config.allowUnfree = true;
@@ -36,10 +39,6 @@ in
   # The home.packages option allows you to install Nix packages into your
   # environment.
   home.packages = [
-    # # Adds the 'hello' command to your environment. It prints a friendly
-    # # "Hello, world!" when run.
-    # pkgs.hello
-
     # # It is sometimes useful to fine-tune packages, for example, by applying
     # # overrides. You can do that directly here, just don't forget the
     # # parentheses. Maybe you want to install Nerd Fonts with a limited number of
@@ -93,134 +92,4 @@ in
   programs.home-manager.enable = true;
   
   programs.bash.enable = true;
-
-  # Custom desktop files
-  xdg.desktopEntries = {
-    whatsapp = {
-      name = "Whatsapp";
-      genericName = "Message";
-      exec = "firefox -new-window https://web.whatsapp.com/";
-      terminal = false;
-      categories = [ "Network" "WebBrowser" ];
-      mimeType = [ "text/html" "text/xml" ];
-    };
-  };
-
-  gtk = {
-    enable = true;
-    theme = {
-      name = "catppuccin-macchiato-mauve-standard+normal";
-      package = pkgs.catppuccin-gtk.override {
-        variant = "macchiato";
-        accents = ["mauve"];
-        size = "standard";
-        tweaks = ["normal"];
-      };
-    };
-
-    iconTheme = {
-      name = "Papirus-Dark"; 
-      package = pkgs.catppuccin-papirus-folders.override {
-        flavor = "macchiato";
-        accent = "mauve";
-      };
-    };
-
-    gtk3.extraConfig = { gtk-application-prefer-dark-theme = 1; };
-    gtk4.extraConfig = { gtk-application-prefer-dark-theme = 1; };
-  };
-
-  home.pointerCursor = {
-    name = "Vanilla-DMZ";
-    package = pkgs.vanilla-dmz;
-    size = 24; # You can change this to 32, 48, or 64 if you prefer larger cursors
-    gtk.enable = true;
-    x11.enable = true;
-  };
-
-  xdg.configFile = {
-    "gtk-4.0/assets".source = "${config.gtk.theme.package}/share/themes/${config.gtk.theme.name}/gtk-4.0/assets";
-    "gtk-4.0/gtk.css".source = "${config.gtk.theme.package}/share/themes/${config.gtk.theme.name}/gtk-4.0/gtk.css";
-    "gtk-4.0/gtk-dark.css".source = "${config.gtk.theme.package}/share/themes/${config.gtk.theme.name}/gtk-4.0/gtk-dark.css";
-  };
-  
-  dconf.settings = {
-    "org/gnome/desktop/interface" = {
-      color-scheme = "prefer-dark";
-    };
-  };
-
-  programs.starship = {
-    enable = true;
-    enableBashIntegration = true; 
-
-    settings = {
-      "$schema" = "'https://starship.rs/config-schema.json'";
-
-      add_newline = true;
-
-      format = ''
-        $directory$git_branch$git_status$python$nix_shell
-        $character'';
-
-      directory = {
-        format = "[$path]($style)";
-        style = "blue";
-        truncation_length = 0;
-      };
-
-      git_branch = {
-        format = " \\( [$branch]($style)";
-        style = "white";
-      };
-
-      git_status = {
-        format = "$all_status$ahead_behind \\)";
-        staged = " [+$count](green)";
-        modified = " [~$count](yellow)";
-        untracked = " [?$count](white)";
-        deleted = " [-$count](red)";
-        conflicted = " [!$count](red)";
-        renamed = "";
-        stashed = "";
-        ahead = " [⇡$count](green)";
-        behind = " [⇣$count](red)";
-        diverged = " [⇡$ahead_count⇣$behind_count](yellow)";
-        up_to_date = " [✓](green)";
-      };
-
-      # (venv name)
-      python = {
-        format = " \\([$virtualenv]($style)\\)";
-        style = "bold cyan";
-        detect_extensions = [ ];
-        detect_files = [ ];
-        detect_folders = [ ];
-      };
-
-      # (nix)
-      nix_shell = {
-        format = " [$symbol]($style)";
-        symbol = "\\(nix\\)";
-        style = "bold blue";
-        heuristic = true;
-      };
-
-      character = {
-        success_symbol = "[❯](bold green)";
-        error_symbol = "[❯](bold red)";
-      };
-    };
-  };
-  
-  programs.spicetify = {
-    enable = true;
-    enabledExtensions = with spicePkgs.extensions; [
-      adblockify
-      hidePodcasts
-      shuffle
-    ];
-    theme = spicePkgs.themes.catppuccin;
-    colorScheme = "macchiato";
-  };
 }
