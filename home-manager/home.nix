@@ -18,6 +18,7 @@ in
     ./spicetify.nix
     ./starship.nix
     ./desktop-files.nix
+    ./sway.nix
   ];
  
   nixpkgs.config.allowUnfree = true;
