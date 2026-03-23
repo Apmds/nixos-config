@@ -1,5 +1,7 @@
 { config, lib, pkgs, ... }:
 {
+  services.poweralertd.enable = true;
+
   wayland.windowManager.sway = {
     enable = true;
     package = pkgs.swayfx;
@@ -103,6 +105,8 @@
 
       floating = {
         modifier = "${modifier} normal";
+        border = 3;
+        titlebar = false;
       };
 
       gaps = {
@@ -177,7 +181,7 @@
 
       startup = [
         { command = "dbus-daemon --session --address=unix:path=$XDG_RUNTIME_DIR/bus"; }
-        { command = "poweralertd -s -i 'line power'"; }
+        #{ command = "poweralertd -s -i 'line power'"; }
         { command = "wl-paste --watch cliphist store"; }
         {
           command = "swayidle -w timeout 600 '$HOME/.config/sway/scripts/lock.sh' timeout 630 'swaymsg \"output * dpms off\"' resume 'swaymsg \"output * dpms on\"' before-sleep '$HOME/.config/sway/scripts/lock.sh'";
@@ -192,6 +196,9 @@
       include /etc/sway/config-vars.d/*
       include catppuccin-macchiato
       include /etc/sway/config.d/*
+
+      default_border pixel 3
+      default_floating_border pixel 3
 
       bindgesture swipe:right workspace prev
       bindgesture swipe:left workspace next

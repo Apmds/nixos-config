@@ -43,5 +43,37 @@
     "org/gnome/desktop/interface" = {
       color-scheme = "prefer-dark";
     };
+
+    # This is the exact path Nemo reads for its terminal settings:
+    "org/cinnamon/desktop/default-applications/terminal" = {
+      exec = "foot";
+      exec-arg = ""; # Crucial: Overrides the default "-x" which foot doesn't understand
+    };
+  
+    # A good fallback to set for other GNOME-based utilities:
+    "org/gnome/desktop/default-applications/terminal" = {
+      exec = "foot";
+      exec-arg = ""; 
+    };
   };
+
+  # The modern Freedesktop standard (good to have for newer apps)
+  xdg.terminal-exec = {
+    enable = true;
+    settings = {
+      default = [ "foot.desktop" ];
+    };
+  };
+
+  xdg.dataFile."nemo/actions/foot.nemo_action".text = ''
+    [Nemo Action]
+    Active=true
+    Name=Open in Foot
+    Comment=Open Foot terminal here
+    Exec=foot -D "%P"
+    Icon-Name=utilities-terminal
+    Selection=none
+    Extensions=any;
+  '';
 }
+
