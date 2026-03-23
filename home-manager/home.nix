@@ -16,7 +16,7 @@ in
   imports = [
     ./gtk.nix
     ./spicetify.nix
-    ./starship.nix
+    ./bash.nix
     ./desktop-files.nix
     ./sway.nix
   ];
@@ -91,6 +91,4 @@ in
 
   # Let Home Manager install and manage itself.
   programs.home-manager.enable = true;
-  
-  programs.bash.enable = true;
 }
