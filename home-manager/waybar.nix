@@ -291,5 +291,227 @@
         };
       };
     };
+
+
+    style = ''
+      /* Catppuccin macchiato colors */
+      @define-color rosewater #f4dbd6;
+      @define-color flamingo #f0c6c6;
+      @define-color pink #f5bde6;
+      @define-color mauve #c6a0f6;
+      @define-color red #ed8796;
+      @define-color maroon #ee99a0;
+      @define-color peach #f5a97f;
+      @define-color yellow #eed49f;
+      @define-color green #a6da95;
+      @define-color teal #8bd5ca;
+      @define-color sky #91d7e3;
+      @define-color sapphire #7dc4e4;
+      @define-color blue #8aadf4;
+      @define-color lavender #b7bdf8;
+      @define-color text #cad3f5;
+      @define-color subtext1 #b8c0e0;
+      @define-color subtext0 #a5adcb;
+      @define-color overlay2 #939ab7;
+      @define-color overlay1 #8087a2;
+      @define-color overlay0 #6e738d;
+      @define-color surface2 #5b6078;
+      @define-color surface1 #494d64;
+      @define-color surface0 #363a4f;
+      @define-color base #24273a;
+      @define-color mantle #1e2030;
+      @define-color crust #181926;
+      @define-color base_opacity rgba(36, 39, 58, 0.6);
+
+      * {
+        border: none;
+        border-radius: 0;
+        min-height: 0;
+        font-family: JetBrainsMono Nerd Font;
+        font-size: 13px;
+        /*color: @text;*/
+      }
+
+      window#waybar {
+        background-color: @base_opacity;
+        /*color: #FFFFFF;*/
+        transition-property: background-color;
+        transition-duration: 0.5s;
+      }
+
+      window#waybar.hidden {
+        opacity: 0.5;
+      }
+
+      #workspaces {
+        background-color: transparent;
+      }
+
+      #workspaces button {
+        all: initial;
+        /* Remove GTK theme values (waybar #1351) */
+        min-width: 0;
+        /* Fix weird spacing in materia (waybar #450) */
+        box-shadow: inset 0 -3px transparent;
+        /* Use box-shadow instead of border so the text isn't offset */
+        padding: 6px 18px;
+        margin: 6px 3px;
+        border-radius: 4px;
+        background-color: @surface0;
+        color: @text;
+      }
+
+      #workspaces button.active {
+        color: @crust;
+        background-color: @overlay2;
+      }
+
+      #workspaces button:hover {
+        box-shadow: inherit;
+        text-shadow: inherit;
+        background-color: @surface1;
+      }
+
+      #workspaces button.focused {
+          color: @crust;
+          background-color: @overlay2;
+      }
+
+      #workspaces button.urgent {
+        background-color: @red;
+      }
+
+      #memory,
+      #custom-power,
+      #custom-media,
+      #custom-nordvpn,
+      #custom-powerprofiles,
+      #battery,
+      #backlight,
+      #wireplumber,
+      #network,
+      #clock,
+      #language,
+      #mode,
+      #pulseaudio,
+      #tray {
+        border-radius: 4px;
+        margin: 6px 3px;
+        padding: 6px 12px;
+        background-color: @flamingo;
+        color: @crust;
+      }
+
+      #mode {
+          background-color: @surface0;
+          box-shadow: inset 0 -3px #f0f0ff;
+          color: @text;
+      }
+
+      #custom-power {
+        margin-right: 6px;
+      }
+
+      #custom-logo {
+        padding-right: 7px;
+        padding-left: 7px;
+        margin-left: 5px;
+        font-size: 15px;
+        border-radius: 8px 0px 0px 8px;
+        /*color: #1793d1;*/
+      }
+
+      #memory {
+        background-color: @maroon;
+      }
+
+      #battery {
+        background-color: @pink;
+      }
+
+      #battery.warning,
+      #battery.critical,
+      #battery.urgent {
+        background-color: @red;
+        /*color: @yellow;*/
+      }
+
+      #battery.charging {
+        background-color: @green;
+        /*color: #181825;*/
+      }
+
+      #backlight {
+        background-color: @peach;
+      }
+
+      #wireplumber {
+        background-color: @blue;
+      }
+
+      #network {
+        background-color: @sapphire;
+        padding-right: 17px;
+      }
+
+      #clock {
+        font-family: JetBrainsMono Nerd Font;
+        background-color: @mauve;
+      }
+
+      #custom-power {
+        background-color: @flamingo;
+      }
+
+
+      #custom-nordvpn {
+        background-color: @sky;
+      }
+
+      #custom-media {
+        background-color: rgba(0, 0, 0, 0);
+        color: #FFFFFF;
+        min-width: 100px;
+      }
+
+      #custom-media.custom-spotify {
+        color: #1DB954;                      /* Spotify color */
+      }
+      /*
+      #custom-media.custom-spotify::first-letter {
+        color: #1DB954;
+      }
+      */
+
+      #custom-media.custom-vlc {
+        background-color: #ffa000;
+      }
+
+      #language {
+        background: @green;
+        /*color: #000000;*/
+      }
+
+      #pulseaudio {
+          background-color: @yellow;
+          /*color: #000000;*/
+      }
+
+      #pulseaudio.muted {
+          background-color: @lavender;
+          /*color: #2a5c45;*/
+      }
+
+      tooltip {
+        border-radius: 8px;
+        padding: 15px;
+        background-color: #131822;
+      }
+
+      tooltip label {
+        padding: 5px;
+        background-color: #131822;
+      }
+    '';
   };
 }
