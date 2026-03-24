@@ -44,20 +44,17 @@
       color-scheme = "prefer-dark";
     };
 
-    # This is the exact path Nemo reads for its terminal settings:
     "org/cinnamon/desktop/default-applications/terminal" = {
       exec = "foot";
-      exec-arg = ""; # Crucial: Overrides the default "-x" which foot doesn't understand
+      exec-arg = "";
     };
   
-    # A good fallback to set for other GNOME-based utilities:
     "org/gnome/desktop/default-applications/terminal" = {
       exec = "foot";
       exec-arg = ""; 
     };
   };
 
-  # The modern Freedesktop standard (good to have for newer apps)
   xdg.terminal-exec = {
     enable = true;
     settings = {
