@@ -131,6 +131,7 @@ in
     gemini-cli
     ripgrep
     nixfmt
+    fzf
 
     # System-wide python packages 
     (python314.withPackages (ps: with ps; [
