@@ -90,7 +90,7 @@
         "${modifier}+Shift+r" = "exec $HOME/.config/sway/scripts/toggle_refresh_rate.sh";
         "${modifier}+Shift+p" = "exec $HOME/.config/sway/scripts/cycle_power_profiles.sh";
         "${modifier}+g" = "exec $HOME/.config/sway/scripts/toggle_waybar.sh";
-        "${modifier}+t" = "exec network_manager";
+        "${modifier}+t" = "exec network_manager_ui";
         "${modifier}+c" = "exec cliphist list | tofi -c $HOME/.config/tofi/config_clipboard | cliphist decode | wl-copy";
         "${modifier}+Tab" = "mode swtchr; exec ~/.cargo/bin/swtchr";
         "${modifier}+Shift+Tab" = "mode swtchr; exec ~/.cargo/bin/swtchr";
@@ -199,6 +199,9 @@
 
       default_border pixel 3
       default_floating_border pixel 3
+      font pango:monospace 0.001
+      titlebar_padding 1
+      titlebar_border_thickness 0
 
       bindgesture swipe:right workspace prev
       bindgesture swipe:left workspace next
@@ -208,6 +211,8 @@
       blur_passes 1
       blur_radius 1
       default_dim_inactive 0.1
+
+      workspace number 1
     '';
   };
 }
