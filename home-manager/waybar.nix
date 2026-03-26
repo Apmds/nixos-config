@@ -4,7 +4,7 @@
     enable = true;
     settings = {
       mainBar = {
-        layer = "top";
+        #layer = "top";
         position = "top";
         height = 30;
         spacing = 4;
