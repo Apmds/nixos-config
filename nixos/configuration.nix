@@ -150,9 +150,42 @@ in
     enable = true;
   };
 
-  programs.vim = {
+  programs.neovim = {
     enable = true;
     defaultEditor = true;
+    viAlias = true;
+    vimAlias = true;
+
+    configure = {
+      customLuaRC = ''
+        -- Function to clear backgrounds
+        local function transparency()
+          local highlights = {
+            "Normal",
+            "NormalNC",
+            "LineNr",
+            "Folded",
+            "NonText",
+            "SpecialKey",
+            "VertSplit",
+            "SignColumn",
+            "EndOfBuffer",
+          }
+          for _, group in ipairs(highlights) do
+            vim.api.nvim_set_hl(0, group, { bg = "none", ctermbg = "none" })
+          end
+        end
+
+        -- Run it now
+        transparency()
+        
+        -- Ensure it stays transparent even if you change colorschemes later
+        vim.api.nvim_create_autocmd("ColorScheme", {
+          pattern = "*",
+          callback = transparency,
+        })
+      '';
+    };
   };
 
   programs.bash = {
