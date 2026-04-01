@@ -47,6 +47,16 @@
 
       ports="sudo ss -tulpn";
       nixfetch="fastfetch --logo ~/.config/nixos_neofetch_logo.txt --logo-color-1 blue --logo-color-2 cyan";
+
+      record="GEOM=$(slurp) && sleep 1 && wf-recorder -g \"$GEOM\" --audio -p quality=5 -f screencast-$(date +%Y%m%d_%H%M%S).mp4";
+      
+      gst="git status";
+      glog="git log";
+      
+      ll="ls -lah";
+      la="ls -a";
+      doc="docker";
+      docc="docker compose";
     };
   };
 }

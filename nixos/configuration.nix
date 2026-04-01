@@ -73,7 +73,7 @@ in
   users.users.apmds = {
     isNormalUser = true;
     description = "Apmds";
-    extraGroups = [ "networkmanager" "wheel" "docker" "video" "wireshark" ];
+    extraGroups = [ "networkmanager" "wheel" "docker" "video" "render" "wireshark" ];
     packages = with pkgs; [];
   };
 
@@ -133,6 +133,9 @@ in
     nixfmt
     fzf
     tree
+    wf-recorder
+    ffmpeg
+    aseprite
 
     # System-wide python packages 
     (python314.withPackages (ps: with ps; [
