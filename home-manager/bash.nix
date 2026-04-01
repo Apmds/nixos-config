@@ -57,6 +57,9 @@
       la="ls -a";
       doc="docker";
       docc="docker compose";
+
+      hm="home-manager";
+      nixos="nixos-rebuild";
     };
   };
 }
