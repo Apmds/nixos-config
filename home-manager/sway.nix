@@ -180,7 +180,10 @@
       };
 
       startup = [
-        { command = "dbus-daemon --session --address=unix:path=$XDG_RUNTIME_DIR/bus"; }
+        { command = "dbus-update-activation-environment --systemd WAYLAND_DISPLAY XDG_CURRENT_DESKTOP=sway"; }
+        { command = "systemctl --user import-environment WAYLAND_DISPLAY XDG_CURRENT_DESKTOP"; }
+        { command = "gnome-keyring-daemon --start --components=secrets,ssh,pkcs11"; }
+        { command = "${pkgs.polkit_gnome}/libexec/polkit-gnome-authentication-agent-1"; }
         #{ command = "poweralertd -s -i 'line power'"; }
         { command = "wl-paste --watch cliphist store"; }
         {
