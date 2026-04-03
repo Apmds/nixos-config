@@ -32,6 +32,10 @@ in
   boot.loader.grub.useOSProber = true;
   boot.loader.efi.canTouchEfiVariables = true;
 
+  # For drawing tablet
+  hardware.opentabletdriver.enable = true;
+  boot.kernelModules = [ "uinput" ];
+
   networking.hostName = "nixos"; # Define your hostname.
   # networking.wireless.enable = true;  # Enables wireless support via wpa_supplicant.
 
