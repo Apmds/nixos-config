@@ -4,3 +4,6 @@
 !home-manager/**
 !nixos_neofetch_logo.txt
 !nixos/**
+
+!aseprite/extensions/**
+!aseprite/palettes/**
