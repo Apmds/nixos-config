@@ -64,9 +64,15 @@
   #
   home.sessionVariables = {
     #EDITOR = "vim";
-    SSH_ASKPASS = "${pkgs.gcr}/bin/gcr-ssh-askpass";
+    #SSH_ASKPASS = "${pkgs.gcr}/libexec/gcr-ssh-askpass";
+    #SSH_ASKPASS_REQUIRE = "prefer";
   };
 
   # Let Home Manager install and manage itself.
   programs.home-manager.enable = true;
+
+  #programs.ssh = {
+  #  enable = true;
+  #  matchBlocks."*".addKeysToAgent = "yes";
+  #};
 }
