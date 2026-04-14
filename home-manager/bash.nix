@@ -61,6 +61,7 @@
       hm="home-manager";
       nixos="nixos-rebuild";
       open="xdg-open";
+      "cd.."="cd ..";
     };
   };
 }
