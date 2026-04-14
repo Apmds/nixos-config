@@ -22,6 +22,7 @@ in
   imports =
     [ # Include the results of the hardware scan.
       ./hardware-configuration.nix
+      ./nvidia.nix # Comentar e descomentar para ter drivers e docker da nvidia
     ];
 
   # Bootloader.
@@ -140,6 +141,7 @@ in
     wf-recorder
     ffmpeg
     aseprite
+    blender
 
     # System-wide python packages 
     (python314.withPackages (ps: with ps; [
@@ -234,9 +236,12 @@ in
   services.gvfs.enable = true;
   services.udisks2.enable = true; 
   services.gnome.gnome-keyring.enable = true;
-  
+  services.gnome.gcr-ssh-agent.enable = false;
+
   # This is needed because it sets up stuff to work
   programs.sway.enable = true;
+  #programs.sway.wrapperFeatures.gtk = true;
+  programs.sway.extraOptions = ["--unsupported-gpu"];
   programs.sway.package = pkgs.swayfx;
   
   programs.nm-applet.enable = true;
@@ -269,9 +274,10 @@ in
     enableDefaultPackages = true;
   };
 
+  programs.ssh.startAgent = true;
+
   environment.variables = {
     TERMINAL = "foot";
-    SSH_AUTH_SOCK = "/run/user/1000/keyring/ssh";
   };
   
   environment.sessionVariables = {
@@ -286,7 +292,7 @@ in
   };
 
   virtualisation.docker.enable = true;
-  
+
   # Bluetooth
   hardware.bluetooth.enable = true;
   services.blueman.enable = true;
