@@ -63,6 +63,7 @@
       open="xdg-open";
       "cd.."="cd ..";
       mirror="wl-mirror HDMI-A-1";
+      sway="sway --unsupported-gpu";
     };
   };
 }
