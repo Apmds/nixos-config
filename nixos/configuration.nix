@@ -17,6 +17,8 @@ let
   };
 
   network_manager_ui = pkgs.callPackage "${nmUiSrc}/nix" { };
+
+  swtchr = pkgs.callPackage ./derivations/swtchr.nix { };
 in
 {
   imports =
@@ -126,6 +128,7 @@ in
     baobab
     tdf
     network_manager_ui
+    swtchr
     maven
     javaPackages.compiler.openjdk21
     pinta
@@ -142,7 +145,7 @@ in
     ffmpeg
     aseprite
     blender
-
+    
     # System-wide python packages 
     (python314.withPackages (ps: with ps; [
       pygobject3
@@ -310,6 +313,10 @@ in
         Type = "simple";
     };
   };
+
+  #systemd.packages = [ swtchr ];
+  #systemd.user.services.swtchrd.wantedBy = [ "graphical-session.target" ];
+
   # update the firewall rule to allow keepalive traffic
   networking.firewall.checkReversePath = "loose";
   networking.firewall.trustedInterfaces = [ "snx-tun" ];

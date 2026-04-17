@@ -94,8 +94,8 @@
         "${modifier}+g" = "exec $HOME/.config/sway/scripts/toggle_waybar.sh";
         "${modifier}+t" = "exec network_manager_ui";
         "${modifier}+c" = "exec cliphist list | tofi -c $HOME/.config/tofi/config_clipboard | cliphist decode | wl-copy";
-        "${modifier}+Tab" = "mode swtchr; exec ~/.cargo/bin/swtchr";
-        "${modifier}+Shift+Tab" = "mode swtchr; exec ~/.cargo/bin/swtchr";
+        "${modifier}+Tab" = "mode swtchr; exec swtchr";
+        "${modifier}+Shift+Tab" = "mode swtchr; exec swtchr";
 
         "XF86MonBrightnessUp" = "exec brightnessctl s +5%";
         "XF86MonBrightnessDown" = "exec brightnessctl s 5%-";
@@ -192,7 +192,7 @@
           command = "swayidle -w timeout 600 '$HOME/.config/sway/scripts/lock.sh' timeout 630 'swaymsg \"output * dpms off\"' resume 'swaymsg \"output * dpms on\"' before-sleep '$HOME/.config/sway/scripts/lock.sh'";
         }
         { command = "sway-audio-idle-inhibit"; }
-        { command = "~/.cargo/bin/swtchrd"; always = true; }
+        { command = "swtchrd"; always = true; }
       ];
     };
 
