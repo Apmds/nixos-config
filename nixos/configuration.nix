@@ -132,7 +132,7 @@ in
     maven
     javaPackages.compiler.openjdk21
     pinta
-    btop
+    (btop.override { cudaSupport = true; })
     snx-rs
     wl-mirror
     chromium
@@ -209,6 +209,13 @@ in
     '';
   };
   
+  security.wrappers.btop = {
+    owner = "root";
+    group = "root";
+    capabilities = "cap_sys_ptrace,cap_dac_read_search,cap_perfmon+ep";
+    source = "${pkgs.btop.override { cudaSupport = true; }}/bin/btop";
+  };
+
   security.pam.services = {
     greetd.enableGnomeKeyring = true;
     swaylock.enableGnomeKeyring = true;
