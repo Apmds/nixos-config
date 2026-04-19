@@ -33,3 +33,9 @@ Follow the [standalone installation](https://nix-community.github.io/home-manage
 ```
 home-manager switch
 ```
+
+## Nvidia
+
+The [nvidia](nixos/nvidia.nix) module handles nvidia drivers. To "turn off" nvidia, comment the line in the "imports" section at the beggining of [configuration.nix](nixos/configuration.nix).
+```
+
