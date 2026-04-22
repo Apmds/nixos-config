@@ -156,8 +156,14 @@
       };
 
       output = {
-        "*" = {
+        "eDP-1" = {
           mode = "1920x1080@144.003Hz";
+          position = "0 1080";
+        };
+        "HDMI-A-1" = {
+          position = "0 0";
+        };
+        "*" = {
           bg = "~/Pictures/wallpapers/eletric_poles_dusk.jpg stretch";
         };
       };
