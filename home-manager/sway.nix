@@ -1,5 +1,10 @@
 { config, lib, pkgs, ... }:
 {
+  imports = [
+    ./tofi.nix
+    ./waybar.nix
+  ];
+
   services.poweralertd.enable = true;
 
   wayland.windowManager.sway = {

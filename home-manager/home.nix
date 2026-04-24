@@ -6,7 +6,6 @@
     ./bash.nix
     ./desktop-files.nix
     ./sway.nix
-    ./waybar.nix
   ];
  
   nixpkgs.config.allowUnfree = true;
