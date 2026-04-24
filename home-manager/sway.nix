@@ -3,6 +3,7 @@
   imports = [
     ./tofi.nix
     ./waybar.nix
+    ./mako.nix
   ];
 
   services.poweralertd.enable = true;
