@@ -5,7 +5,7 @@
 
     settings = {
       font="Cozette 11";
-      format="<b>%a ⏵</b> %s\n%b";
+      format="<b>%a ⏵</b> %s\\n%b";
       sort="-time";
       output="DP-2";
       layer="overlay";

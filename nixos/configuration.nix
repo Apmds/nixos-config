@@ -321,9 +321,6 @@ in
     };
   };
 
-  #systemd.packages = [ swtchr ];
-  #systemd.user.services.swtchrd.wantedBy = [ "graphical-session.target" ];
-
   # update the firewall rule to allow keepalive traffic
   networking.firewall.checkReversePath = "loose";
   networking.firewall.trustedInterfaces = [ "snx-tun" ];
