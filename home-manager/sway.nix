@@ -109,6 +109,7 @@
         "XF86AudioRaiseVolume" = "exec pactl set-sink-volume @DEFAULT_SINK@ +5%";
         "XF86AudioLowerVolume" = "exec pactl set-sink-volume @DEFAULT_SINK@ -5%";
         "XF86AudioMicMute" = "exec pactl set-source-mute @DEFAULT_SOURCE@ toggle";
+        "Print" = "exec mkdir -p $HOME/Pictures/screenshots && grim $HOME/Pictures/screenshots/$(date +'%Y-%m-%d-%H%M%S').png";
       };
 
       floating = {
