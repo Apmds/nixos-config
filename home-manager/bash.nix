@@ -11,8 +11,7 @@
       py="python3";
       penv="source env/bin/activate 2>/dev/null || source venv/bin/activate 2>/dev/null || source .venv/bin/activate 2>/dev/null || source .env/bin/activate 2>/dev/null";
       cls="clear";
-      bat="bat --theme 'Catppuccin Macchiato'";
-      openf="xdg-open $(fzf --preview \"bat --theme '\''Catppuccin Macchiato'\'' --color=always {}\" --preview-window \"~3\")";
+      openf="xdg-open $(fzf --preview \"bat --color=always {}\" --preview-window \"~3\")";
 
     #cdf='find . -type d -print | fzf -i';
       cdf="cd \"$(find . -type d -print | fzf -i)\"";
