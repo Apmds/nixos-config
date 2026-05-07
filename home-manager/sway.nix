@@ -2,6 +2,7 @@
 {
   imports = [
     ./tofi.nix
+    ./wofi.nix
     ./waybar.nix
     ./mako.nix
   ];
