@@ -27,6 +27,10 @@ in
       ./nvidia.nix # Comentar e descomentar para ter drivers e docker da nvidia
     ];
 
+  nixpkgs.config.permittedInsecurePackages = [
+    "openssl-1.1.1w"
+  ];
+
   # Bootloader.
   boot.loader.systemd-boot.enable = false; # Disable systemd-boot for now
   boot.loader.grub.enable = true;
@@ -111,6 +115,7 @@ in
     wdisplays
     jq
     bc
+    swayimg
     swaylock-effects
     uv
     discord-ptb
@@ -145,6 +150,7 @@ in
     ffmpeg
     aseprite
     blender
+    claude-code
     
     # System-wide python packages 
     (python314.withPackages (ps: with ps; [
