@@ -151,6 +151,8 @@ in
     aseprite
     blender
     claude-code
+    rtk
+    nodejs_25
     
     # System-wide python packages 
     (python314.withPackages (ps: with ps; [
