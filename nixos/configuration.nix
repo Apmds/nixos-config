@@ -335,16 +335,32 @@ in
   networking.firewall.trustedInterfaces = [ "snx-tun" ];
   networking.firewall.allowedUDPPorts = [ 500 4500 ];
 
-  # Mudar de output de audio sem pausar 
+  # Mudar de output de audio sem pausar
   #services.pipewire = {
   #  enable = true;
-  #  
+  #
   #  wireplumber.extraConfig."99-disable-pause" = {
   #    "wireplumber.settings" = {
   #      "linking.pause-playback" = false;
   #    };
   #  };
   #};
+
+  # Fix: HDMI monitor connection hides laptop speakers.
+  # WirePlumber picks "Headphones" profile (priority 10300) over "Speaker" profile (10200).
+  # Force Speaker profile so laptop speakers always appear in pavucontrol.
+  # Headphones still work via ALSA UCM jack detection when plugged in.
+  services.pipewire.wireplumber.extraConfig."50-fix-laptop-speakers" = {
+    "monitor.alsa.rules" = [
+      {
+        matches = [{ "device.name" = "alsa_card.pci-0000_00_1f.3-platform-skl_hda_dsp_generic"; }];
+        actions."update-props" = {
+          "device.profile" = "HiFi (HDMI1, HDMI2, HDMI3, Mic1, Mic2, Speaker)";
+          "api.acp.auto-route" = true;
+        };
+      }
+    ];
+  };
 
   services.libinput = {
     enable = true;
