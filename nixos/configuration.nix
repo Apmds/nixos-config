@@ -178,6 +178,22 @@ in
 
     configure = {
       customLuaRC = ''
+        -- Indentation: spaces instead of tabs (4 default, 2 for .nix)
+        vim.opt.expandtab = true
+        vim.opt.tabstop = 4
+        vim.opt.softtabstop = 4
+        vim.opt.shiftwidth = 4
+
+        vim.api.nvim_create_autocmd("FileType", {
+          pattern = "nix",
+          callback = function()
+            vim.bo.expandtab = true
+            vim.bo.tabstop = 2
+            vim.bo.softtabstop = 2
+            vim.bo.shiftwidth = 2
+          end,
+        })
+
         -- Function to clear backgrounds
         local function transparency()
           local highlights = {
