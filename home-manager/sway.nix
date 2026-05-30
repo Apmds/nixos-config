@@ -5,6 +5,7 @@
     ./wofi.nix
     ./waybar.nix
     ./mako.nix
+    ./kanshi.nix
   ];
 
   services.poweralertd.enable = true;
