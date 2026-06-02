@@ -152,7 +152,7 @@ in
     blender
     claude-code
     rtk
-    nodejs_25
+    nodejs_26
     
     # System-wide python packages 
     (python314.withPackages (ps: with ps; [
