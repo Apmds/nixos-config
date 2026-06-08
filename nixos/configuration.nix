@@ -2,22 +2,9 @@
 # your system.  Help is available in the configuration.nix(5) man page
 # and in the NixOS manual (accessible by running ‘nixos-help’).
 
-{ config, pkgs, ... }:
+{ config, pkgs, network_manager_ui, ... }:
 
 let
-  nmUiSrc = pkgs.fetchFromGitHub {
-    owner = "Blazzzeee";
-    repo = "network_manager_ui";
-    rev = "master";
-    sha256 = "sha256-2w2GI/WF9MQseAQCxjB1HYEAcOmMNv1lQbfgLbkwHsw=";
-  };
-
-  flakeCompat = import (builtins.fetchTarball "https://github.com/edolstra/flake-compat/archive/master.tar.gz") {
-    src = nmUiSrc;
-  };
-
-  network_manager_ui = pkgs.callPackage "${nmUiSrc}/nix" { };
-
   swtchr = pkgs.callPackage ./derivations/swtchr.nix { };
 in
 {
@@ -93,6 +80,8 @@ in
   # Allow unfree packages
   nixpkgs.config.allowUnfree = true;
 
+  nix.settings.experimental-features = [ "nix-command" "flakes" ];
+
   # List packages installed in system profile. To search, run:
   # $ nix search wget
   environment.systemPackages = with pkgs; [
@@ -132,7 +121,7 @@ in
     glib
     baobab
     tdf
-    network_manager_ui
+    network_manager_ui.packages.x86_64-linux.network_manager_ui
     swtchr
     maven
     javaPackages.compiler.openjdk21

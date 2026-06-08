@@ -10,3 +10,6 @@
 
 !snx-rs/**
 !swtchr/**
+
+!flake.nix
+!flake.lock

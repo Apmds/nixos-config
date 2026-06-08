@@ -2,9 +2,10 @@
 {
   services.kanshi = {
     enable = true;
-    profiles = {
-      "01_home" = {
-        outputs = [
+    settings = [
+      {
+        profile.name = "01_home";
+        profile.outputs = [
           {
             criteria = "ASUSTek COMPUTER INC XG27AQDMGR W1LMTF016546";
             mode = "2560x1440@59.951";
@@ -17,9 +18,10 @@
             status = "enable";
           }
         ];
-      };
-      "02_base" = {
-        outputs = [
+      }
+      {
+        profile.name = "02_base";
+        profile.outputs = [
           {
             criteria = "HDMI-A-1";
             mode = "1920x1080@60.000";
@@ -32,7 +34,7 @@
             status = "enable";
           }
         ];
-      };
-    };
+      }
+    ];
   };
 }
