@@ -6,7 +6,7 @@
 
   hardware.nvidia = {
     modesetting.enable = true;
-    powerManagement.enable = true;
+    powerManagement.enable = false;
 
     # 'open' should be true for newer cards (Turing+), false for older.
     open = true; 
