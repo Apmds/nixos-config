@@ -7,6 +7,8 @@
     ./desktop-files.nix
     ./sway.nix
     ./bat.nix
+    ./cava.nix
+    ./rofi.nix
   ];
  
   nixpkgs.config.allowUnfree = true;
