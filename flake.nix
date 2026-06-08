@@ -11,13 +11,17 @@
       url = "github:Gerg-L/spicetify-nix";
       inputs.nixpkgs.follows = "nixpkgs";
     };
+    sway-screenshot = {
+      url = "github:Gustash/sway-screenshot";
+      flake = false;
+    };
     network_manager_ui = {
       url = "github:Blazzzeee/network_manager_ui?dir=nix";
       inputs.nixpkgs.follows = "nixpkgs";
     };
   };
 
-  outputs = { self, nixpkgs, home-manager, spicetify, network_manager_ui }: {
+  outputs = { self, nixpkgs, home-manager, spicetify, sway-screenshot, network_manager_ui }: {
     nixosConfigurations.nixos = nixpkgs.lib.nixosSystem {
       system = "x86_64-linux";
       specialArgs = { inherit network_manager_ui; };
@@ -26,7 +30,7 @@
 
     homeConfigurations."apmds" = home-manager.lib.homeManagerConfiguration {
       pkgs = nixpkgs.legacyPackages.x86_64-linux;
-      extraSpecialArgs = { inherit spicetify; };
+      extraSpecialArgs = { inherit spicetify sway-screenshot; };
       modules = [ ./home-manager/home.nix ];
     };
   };

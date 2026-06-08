@@ -25,11 +25,11 @@
         ]
       },
       "locked": {
-        "lastModified": 1780679734,
-        "narHash": "sha256-KmRNvpNOb7QEORa06bVgjW9kITcx0VhsI7w0vhmZyD8=",
+        "lastModified": 1780943742,
+        "narHash": "sha256-01bTMR9ZPG+uxPaZBeOwagg5uxIaFYs2/3YIrOX+bCA=",
         "owner": "nix-community",
         "repo": "home-manager",
-        "rev": "b2b7db486e06e098711dc291bb25db82850e1d16",
+        "rev": "df39142474950e42d5fc3bf2fef9d6c62abbe8d7",
         "type": "github"
       },
       "original": {
@@ -80,11 +80,11 @@
     },
     "nixpkgs_2": {
       "locked": {
-        "lastModified": 1780243769,
-        "narHash": "sha256-x5UQuRsH3MqI0U9afaXSNqzTPSeZlRLvFAav2Ux1pNw=",
+        "lastModified": 1780749050,
+        "narHash": "sha256-3av0pIjlOWQ6rDbNOmpUSvbNnJkGORQKKjb4LtCZsIY=",
         "owner": "nixos",
         "repo": "nixpkgs",
-        "rev": "331800de5053fcebacf6813adb5db9c9dca22a0c",
+        "rev": "a799d3e3886da994fa307f817a6bc705ae538eeb",
         "type": "github"
       },
       "original": {
@@ -99,7 +99,8 @@
         "home-manager": "home-manager",
         "network_manager_ui": "network_manager_ui",
         "nixpkgs": "nixpkgs_2",
-        "spicetify": "spicetify"
+        "spicetify": "spicetify",
+        "sway-screenshot": "sway-screenshot"
       }
     },
     "spicetify": {
@@ -110,16 +111,32 @@
         "systems": "systems_2"
       },
       "locked": {
-        "lastModified": 1780422259,
-        "narHash": "sha256-dWGk4SEdI189kQW5cE4Uo1Mc+P+kQEdgMcyMgTtmQOA=",
+        "lastModified": 1780857688,
+        "narHash": "sha256-e4E6M6erJIus5Cm/A4faaaTuUfof1uvcviAPSh7tmLU=",
         "owner": "Gerg-L",
         "repo": "spicetify-nix",
-        "rev": "8414bbf2fcc7bc0a22c675e498e3c7365c1aec0a",
+        "rev": "aad629e8261f219b0a5b3a2189b09d65216a0983",
         "type": "github"
       },
       "original": {
         "owner": "Gerg-L",
         "repo": "spicetify-nix",
+        "type": "github"
+      }
+    },
+    "sway-screenshot": {
+      "flake": false,
+      "locked": {
+        "lastModified": 1763770914,
+        "narHash": "sha256-GDWfC/lsqUNIlP/vwSlm3syP6dgQowwe15BFMyEezDs=",
+        "owner": "Gustash",
+        "repo": "sway-screenshot",
+        "rev": "6292e3b705417bd2f4a949661d7ba198e6039765",
+        "type": "github"
+      },
+      "original": {
+        "owner": "Gustash",
+        "repo": "sway-screenshot",
         "type": "github"
       }
     },
