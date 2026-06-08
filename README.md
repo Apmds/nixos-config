@@ -8,6 +8,8 @@ The NixOS system config lives in the [nixos](nixos/) directory and is symlinked 
 
 This repo is currently sitting on the `~/.config` directory in my computer in case I really need to have other configs here that I couldn't just use nix for.
 
+**Note**: If you don't like flakes for some reason and want to use this, a (completely not updated) branch named `legacy-flakeless` exists, though it is **NOT** recommended.
+
 ## Installing
 
 Assuming you already have NixOS installed (or at least, the configs generated)
