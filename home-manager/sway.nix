@@ -53,18 +53,6 @@ let
     '';
   };
 
-  lock = pkgs.writeShellApplication {
-    name = "lock";
-    runtimeInputs = [ pkgs.swayidle pkgs.swaylock pkgs.procps ];
-    text = ''
-      swayidle -w \
-        timeout 15 'swaymsg "output * dpms off"' \
-        resume 'swaymsg "output * dpms on"' &
-      swaylock
-      pkill --newest swayidle
-    '';
-  };
-
   swayScreenshot = pkgs.writeShellScriptBin "sway-screenshot"
     (builtins.readFile "${sway-screenshot}/sway-screenshot");
 
@@ -90,6 +78,7 @@ in
     ./waybar.nix
     ./mako.nix
     ./kanshi.nix
+    ./swaylock.nix
   ];
 
   services.poweralertd.enable = true;
@@ -281,7 +270,7 @@ in
         #{ command = "poweralertd -s -i 'line power'"; }
         { command = "wl-paste --watch cliphist store"; }
         {
-          command = "swayidle -w timeout 600 '${lock}/bin/lock' timeout 630 'swaymsg \"output * dpms off\"' resume 'swaymsg \"output * dpms on\"' before-sleep '${lock}/bin/lock'";
+          command = "swayidle -w timeout 600 'swaylock' timeout 630 'swaymsg \"output * dpms off\"' resume 'swaymsg \"output * dpms on\"' before-sleep 'swaylock'";
         }
         { command = "sway-audio-idle-inhibit"; }
         { command = "swtchrd"; always = true; }
