@@ -1,4 +1,40 @@
 { config, pkgs, ... }:
+let
+  cyclePowerProfiles = pkgs.writeShellApplication {
+    name = "cycle-power-profiles";
+    runtimeInputs = [ pkgs.power-profiles-daemon pkgs.libnotify ];
+    text = ''
+      current_mode=$(powerprofilesctl get)
+      modes=("power-saver" "balanced" "performance")
+      current_index=0
+      for i in "''${!modes[@]}"; do
+        if [[ "''${modes[$i]}" == "$current_mode" ]]; then
+          current_index=$i
+          break
+        fi
+      done
+      next_index=$(( (current_index + 1) % ''${#modes[@]} ))
+      next_mode=''${modes[$next_index]}
+      powerprofilesctl set "$next_mode"
+      notify-send "Power Profile Switcher" "Switched from $current_mode to $next_mode"
+    '';
+  };
+
+  wofiPowermenu = pkgs.writeShellApplication {
+    name = "wofi-powermenu";
+    runtimeInputs = [ pkgs.wofi pkgs.gawk ];
+    text = ''
+      entries="⇠ Logout\n⏾ Suspend\n⭮ Reboot\n⏻ Shutdown"
+      selected=$(echo -e "$entries" | wofi --width 250 --height 240 --dmenu --cache-file /dev/null | awk '{print tolower($2)}')
+      case $selected in
+        logout)   exec sway exit ;;
+        suspend)  exec systemctl suspend ;;
+        reboot)   exec systemctl reboot ;;
+        shutdown) exec systemctl poweroff ;;
+      esac
+    '';
+  };
+in
 {
   programs.waybar = {
     enable = true;
@@ -284,7 +320,7 @@
 
         "custom/powerprofiles" = {
           exec = "~/.config/waybar/scripts/power-profile.sh";
-          on-click = "~/.config/sway/scripts/cycle_power_profiles.sh";
+          on-click = "${cyclePowerProfiles}/bin/cycle-power-profiles";
           interval = 5;
           return-type = "json";
           tooltip = true;
