@@ -99,8 +99,7 @@
         "home-manager": "home-manager",
         "network_manager_ui": "network_manager_ui",
         "nixpkgs": "nixpkgs_2",
-        "spicetify": "spicetify",
-        "sway-screenshot": "sway-screenshot"
+        "spicetify": "spicetify"
       }
     },
     "spicetify": {
@@ -121,22 +120,6 @@
       "original": {
         "owner": "Gerg-L",
         "repo": "spicetify-nix",
-        "type": "github"
-      }
-    },
-    "sway-screenshot": {
-      "flake": false,
-      "locked": {
-        "lastModified": 1763770914,
-        "narHash": "sha256-GDWfC/lsqUNIlP/vwSlm3syP6dgQowwe15BFMyEezDs=",
-        "owner": "Gustash",
-        "repo": "sway-screenshot",
-        "rev": "6292e3b705417bd2f4a949661d7ba198e6039765",
-        "type": "github"
-      },
-      "original": {
-        "owner": "Gustash",
-        "repo": "sway-screenshot",
         "type": "github"
       }
     },

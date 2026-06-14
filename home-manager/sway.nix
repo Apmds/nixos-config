@@ -53,8 +53,13 @@ let
     '';
   };
 
-  swayScreenshot = pkgs.writeShellScriptBin "sway-screenshot"
-    (builtins.readFile "${sway-screenshot}/sway-screenshot");
+  swayScreenshot = pkgs.writeShellApplication {
+    name = "sway-screenshot";
+    runtimeInputs = [ pkgs.grim pkgs.slurp pkgs.wl-clipboard ];
+    text = ''
+      grim -g "$(slurp)" - | wl-copy
+    '';
+  };
 
   wofiPowermenu = pkgs.writeShellApplication {
     name = "wofi-powermenu";
