@@ -261,6 +261,7 @@ in
   services.udisks2.enable = true; 
   services.gnome.gnome-keyring.enable = true;
   services.gnome.gcr-ssh-agent.enable = false;
+  services.tailscale.enable = true;
 
   # This is needed because it sets up stuff to work
   programs.sway.enable = true;
