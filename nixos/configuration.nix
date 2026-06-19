@@ -142,6 +142,7 @@ in
     claude-code
     rtk
     nodejs_26
+    godot
     
     # System-wide python packages 
     (python314.withPackages (ps: with ps; [
