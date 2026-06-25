@@ -1,0 +1,4 @@
+@theme "./themes/catppuccin.rasi"
+	configuration {
+	terminal: "foor";
+	}

@@ -11,5 +11,7 @@
 !snx-rs/**
 !swtchr/**
 
+!rofi/wifi/**
+
 !flake.nix
 !flake.lock
