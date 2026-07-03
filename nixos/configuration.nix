@@ -139,6 +139,7 @@ in
     rtk
     nodejs_26
     godot
+    docker-credential-helpers
     
     # System-wide python packages 
     (python314.withPackages (ps: with ps; [
