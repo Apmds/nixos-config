@@ -89,7 +89,6 @@ in
     nemo
     pavucontrol
     tofi
-    mako
     wl-clipboard
     cliphist
     waybar
