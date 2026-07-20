@@ -27,6 +27,7 @@
   };
 
   home.pointerCursor = {
+    enable = true;
     name = "Vanilla-DMZ";
     package = pkgs.vanilla-dmz;
     size = 24; # You can change this to 32, 48, or 64 if you prefer larger cursors

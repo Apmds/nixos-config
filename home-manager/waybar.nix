@@ -629,7 +629,7 @@ in
         border: none;
         border-radius: 0;
         min-height: 0;
-        font-family: JetBrainsMono Nerd Font;
+        font-family: "DejaVu Sans", "JetBrainsMono Nerd Font";
         font-size: 13px;
         /*color: @text;*/
       }

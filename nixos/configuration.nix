@@ -292,6 +292,7 @@ in
       noto-fonts-cjk-serif
       noto-fonts-color-emoji
       nerd-fonts.fira-code
+      nerd-fonts.jetbrains-mono
     ];
     enableDefaultPackages = true;
   };
