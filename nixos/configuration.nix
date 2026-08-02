@@ -99,7 +99,6 @@ in
     wdisplays
     jq
     bc
-    swayimg
     swaylock-effects
     uv
     discord-ptb

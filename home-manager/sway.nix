@@ -84,6 +84,7 @@ in
     ./mako.nix
     ./kanshi.nix
     ./swaylock.nix
+    ./swayimg.nix
   ];
 
   services.poweralertd.enable = true;
