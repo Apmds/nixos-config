@@ -12,15 +12,8 @@ in
     [ # Include the results of the hardware scan.
       ./hardware-configuration.nix
       ./nvidia.nix # Comentar e descomentar para ter drivers e docker da nvidia
-    ];
-
-  # Bootloader.
-  boot.loader.systemd-boot.enable = false; # Disable systemd-boot for now
-  boot.loader.grub.enable = true;
-  boot.loader.grub.efiSupport = true;
-  boot.loader.grub.device = "nodev"; # "nodev" is required for UEFI setups
-  boot.loader.grub.useOSProber = true;
-  boot.loader.efi.canTouchEfiVariables = true;
+      ./grub.nix
+    ]; 
 
   # For drawing tablet
   hardware.opentabletdriver.enable = true;
@@ -138,7 +131,8 @@ in
     nodejs_26
     godot
     docker-credential-helpers
-    
+    android-tools
+
     # System-wide python packages 
     (python314.withPackages (ps: with ps; [
       pygobject3
