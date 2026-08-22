@@ -40,6 +40,10 @@ sudo ln -s ~/.config/nixos /etc/nixos
 sudo nixos-rebuild switch
 ```
 
+Regarding secure boot, the system uses [Limine](https://wiki.nixos.org/wiki/Limine) as the bootloader, and as so it requires the secure boot keys to be enrolled **before** applying the config, as it assumes the keys are already enrolled. To enable secure boot on limine, follow the secure boot section from the [wiki](https://wiki.nixos.org/wiki/Limine). 
+
+If you don't want secure boot enabled, you can either set `boot.loader.limine.secureBoot.enable` to `false` in [limine.nix](./nixos/limine.nix) or use GRUB, by changing the import file in [configuration.nix](./nixos/configuration.nix) from `limine.nix` to `grub.nix`.
+
 ### Home-manager setup
 
 ```bash
