@@ -12,7 +12,7 @@ in
     [ # Include the results of the hardware scan.
       ./hardware-configuration.nix
       ./nvidia.nix # Comentar e descomentar para ter drivers e docker da nvidia
-      ./grub.nix
+      ./limine.nix
     ]; 
 
   # For drawing tablet
