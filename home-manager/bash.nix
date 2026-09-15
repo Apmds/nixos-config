@@ -41,8 +41,14 @@
       IAA="cd ~/UA/3o_ano/2o_semestre/IAA/";
       IES="cd ~/UA/3o_ano/2o_semestre/IES/";
 
+      CDJ="cd ~/UA/4o_ano/1o_semestre/CDJ/";
+      CV="cd ~/UA/4o_ano/1o_semestre/CV/";
+      DP="cd ~/UA/4o_ano/1o_semestre/DP/";
+      PJ2="cd ~/UA/4o_ano/1o_semestre/PJ2/";
+      TPJ="cd ~/UA/4o_ano/1o_semestre/TPJ/";
+
       kys="poweroff";
-      horario="img2sixel ~/Pictures/horarios/horario_3a2s.png";
+      horario="img2sixel ~/Pictures/horarios/horario_4a1s.png";
 
       ports="sudo ss -tulpn";
       nixfetch="fastfetch --logo ~/.config/nixos_neofetch_logo.txt --logo-color-1 blue --logo-color-2 cyan";
