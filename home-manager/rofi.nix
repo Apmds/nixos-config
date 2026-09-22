@@ -4,16 +4,15 @@
     enable = true;
     package = pkgs.rofi;
 
-    font = "JetBrainsMono Nerd Font 12";
-    terminal = "${pkgs.foot}/bin/foot";
-
-    extraConfig = {
+    settings = {
       show-icons = true;
       drun-display-format = "{name}";
       icon-theme = "Papirus-Dark";
       display-drun = "Apps";
       display-run = "Run";
       display-window = "Windows";
+      terminal = "${pkgs.foot}/bin/foot";
+      font = "JetBrainsMono Nerd Font 12";
     };
 
     theme = let
