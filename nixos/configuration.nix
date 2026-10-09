@@ -117,7 +117,7 @@ in
     snx-rs
     wl-mirror
     chromium
-    gemini-cli
+    antigravity-cli
     ripgrep
     nixfmt
     fzf
@@ -132,6 +132,7 @@ in
     godot
     docker-credential-helpers
     android-tools
+    krita
 
     # System-wide python packages 
     (python314.withPackages (ps: with ps; [
