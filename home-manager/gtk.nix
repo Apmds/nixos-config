@@ -29,10 +29,57 @@
   home.pointerCursor = {
     enable = true;
     name = "Vanilla-DMZ";
-    package = pkgs.vanilla-dmz;
+    package = pkgs.vanilla-dmz.overrideAttrs (old: {
+      postInstall = (old.postInstall or "") + ''
+        for theme in DMZ-Black DMZ-White; do
+          dir="$out/share/icons/$theme/cursors"
+          if [ -d "$dir" ]; then
+            # Horizontal resize / stretch
+            ln -sf sb_h_double_arrow "$dir/ew-resize"
+            ln -sf sb_h_double_arrow "$dir/col-resize"
+            ln -sf sb_h_double_arrow "$dir/split_h"
+            ln -sf sb_h_double_arrow "$dir/size_hor"
+            ln -sf sb_h_double_arrow "$dir/size-hor"
+
+            # Vertical resize / stretch
+            ln -sf sb_v_double_arrow "$dir/ns-resize"
+            ln -sf sb_v_double_arrow "$dir/row-resize"
+            ln -sf sb_v_double_arrow "$dir/split_v"
+            ln -sf sb_v_double_arrow "$dir/size_ver"
+            ln -sf sb_v_double_arrow "$dir/size-ver"
+
+            # Diagonal resize
+            ln -sf fd_double_arrow "$dir/nesw-resize"
+            ln -sf fd_double_arrow "$dir/size_fdiag"
+            ln -sf fd_double_arrow "$dir/size-fdiag"
+
+            ln -sf bd_double_arrow "$dir/nwse-resize"
+            ln -sf bd_double_arrow "$dir/size_bdiag"
+            ln -sf bd_double_arrow "$dir/size-bdiag"
+
+            # All direction resize / move
+            ln -sf fleur "$dir/all-resize"
+            ln -sf fleur "$dir/all-scroll"
+            ln -sf fleur "$dir/size_all"
+
+            # Pointer, grab, text
+            ln -sf hand2 "$dir/pointer"
+            ln -sf hand2 "$dir/grab"
+            ln -sf xterm "$dir/text"
+            ln -sf xterm "$dir/vertical-text"
+          fi
+
+          themeFile="$out/share/icons/$theme/index.theme"
+          if [ -f "$themeFile" ]; then
+            sed -i "/^\[Icon Theme\]/a Inherits=Adwaita" "$themeFile"
+          fi
+        done
+      '';
+    });
     size = 24; # You can change this to 32, 48, or 64 if you prefer larger cursors
     gtk.enable = true;
     x11.enable = true;
+    sway.enable = true;
   };
 
   xdg.configFile = {
