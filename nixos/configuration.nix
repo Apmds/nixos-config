@@ -2,7 +2,7 @@
 # your system.  Help is available in the configuration.nix(5) man page
 # and in the NixOS manual (accessible by running ‘nixos-help’).
 
-{ config, pkgs, network_manager_ui, ... }:
+{ config, options, pkgs, network_manager_ui, ... }:
 
 let
   swtchr = pkgs.callPackage ./derivations/swtchr.nix { };
@@ -13,6 +13,7 @@ in
       ./hardware-configuration.nix
       ./nvidia.nix # Comentar e descomentar para ter drivers e docker da nvidia
       ./limine.nix
+      ./nix-ld.nix
     ]; 
 
   # For drawing tablet
@@ -63,8 +64,6 @@ in
     extraGroups = [ "networkmanager" "wheel" "docker" "video" "render" "wireshark" ];
     packages = with pkgs; [];
   };
-
-  programs.nix-ld.enable = true;
 
   # Allow unfree packages
   nixpkgs.config.allowUnfree = true;
