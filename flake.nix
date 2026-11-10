@@ -15,9 +15,13 @@
       url = "github:Blazzzeee/network_manager_ui?dir=nix";
       inputs.nixpkgs.follows = "nixpkgs";
     };
+    assets = {
+      url = "git+ssh://git@github.com/Apmds/nixos-config-assets.git";
+      flake = false;
+    };
   };
 
-  outputs = { self, nixpkgs, home-manager, spicetify, network_manager_ui }: {
+  outputs = { self, nixpkgs, home-manager, spicetify, network_manager_ui, assets, ... }: {
     nixosConfigurations.nixos = nixpkgs.lib.nixosSystem {
       system = "x86_64-linux";
       specialArgs = { inherit network_manager_ui; };
@@ -26,7 +30,7 @@
 
     homeConfigurations."apmds" = home-manager.lib.homeManagerConfiguration {
       pkgs = nixpkgs.legacyPackages.x86_64-linux;
-      extraSpecialArgs = { inherit spicetify; };
+      extraSpecialArgs = { inherit spicetify assets; };
       modules = [ ./home-manager/home.nix ];
     };
   };

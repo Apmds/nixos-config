@@ -9,6 +9,7 @@
     ./bat.nix
     ./cava.nix
     ./rofi.nix
+    ./foot.nix
   ];
  
   nixpkgs.config.allowUnfree = true;

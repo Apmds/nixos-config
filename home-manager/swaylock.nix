@@ -1,4 +1,4 @@
-{ config, pkgs, ... }:
+{ config, pkgs, assets, ... }:
 {
   programs.swaylock = {
     enable = true;
@@ -9,7 +9,7 @@
       show-failed-attempts = true;
       ignore-empty-password = true;
 
-      image = "/home/apmds/Pictures/wallpapers/pixel_night_sky.png";
+      image = "${assets}/wallpapers/pixel_night_sky.png";
 
       clock = true;
       indicator = true;

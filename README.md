@@ -2,7 +2,9 @@
 
 This repository will contain all configurations from my NixOS system.
 
-A single `flake.nix` at the repo root covers both NixOS and home-manager. It is symlinked into `nixos/` and `home-manager/` so each tool finds it automatically.
+A single `flake.nix` at the repo root covers both NixOS and home-manager. It is symlinked into `nixos/` and `home-manager/` so each tool finds it automatically. Note that flake lock updates (`nix flake update`) should be run from `~/.config` (the repository root).
+
+Private assets (wallpapers, schedules, etc.) are fetched via the `assets` flake input (`git+ssh://git@github.com/Apmds/nixos-config-assets.git`) with `flake = false`.
 
 The NixOS system config lives in the [nixos](nixos/) directory and is symlinked at `/etc/nixos`.
 

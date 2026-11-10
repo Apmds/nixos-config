@@ -1,5 +1,21 @@
 {
   "nodes": {
+    "assets": {
+      "flake": false,
+      "locked": {
+        "lastModified": 1794308837,
+        "narHash": "sha256-OLsSd+m7ySlq+nyq5V0DP6Rw7oZ8WeOOXXfe0W3fU00=",
+        "ref": "refs/heads/master",
+        "rev": "621ac88342da3b1855b1bacafc1dc8c353087ec9",
+        "revCount": 1,
+        "type": "git",
+        "url": "ssh://git@github.com/Apmds/nixos-config-assets.git"
+      },
+      "original": {
+        "type": "git",
+        "url": "ssh://git@github.com/Apmds/nixos-config-assets.git"
+      }
+    },
     "flake-utils": {
       "inputs": {
         "systems": "systems"
@@ -96,6 +112,7 @@
     },
     "root": {
       "inputs": {
+        "assets": "assets",
         "home-manager": "home-manager",
         "network_manager_ui": "network_manager_ui",
         "nixpkgs": "nixpkgs_2",

@@ -1,4 +1,4 @@
-{ config, lib, pkgs, sway-screenshot, ... }:
+{ config, lib, pkgs, assets, ... }:
 let
   toggleWaybar = pkgs.writeShellApplication {
     name = "toggle-waybar";
@@ -165,7 +165,7 @@ in
         "${modifier}+minus" = "scratchpad show";
 
         "${modifier}+r" = "mode resize";
-        "${modifier}+Insert" = "exec swaylock -i ~/Pictures/wallpapers/pixel_night_sky.png";
+        "${modifier}+Insert" = "exec swaylock -i ${assets}/wallpapers/pixel_night_sky.png";
         "${modifier}+Backspace" = "exec ${wofiPowermenu}/bin/wofi-powermenu";
         "${modifier}+Ctrl+Left" = "workspace prev";
         "${modifier}+Ctrl+Right" = "workspace next";
@@ -245,7 +245,7 @@ in
 
       output = {
         "*" = {
-          bg = "~/Pictures/wallpapers/eletric_poles_dusk.jpg stretch";
+          bg = "${assets}/wallpapers/eletric_poles_dusk.jpg stretch";
         };
       };
 
@@ -307,4 +307,33 @@ in
       workspace number 1
     '';
   };
+
+  xdg.configFile."sway/catppuccin-macchiato".text = ''
+    set $rosewater #f4dbd6
+    set $flamingo #f0c6c6
+    set $pink #f5bde6
+    set $mauve #c6a0f6
+    set $red #ed8796
+    set $maroon #ee99a0
+    set $peach #f5a97f
+    set $yellow #eed49f
+    set $green #a6da95
+    set $teal #8bd5ca
+    set $sky #91d7e3
+    set $sapphire #7dc4e4
+    set $blue #8aadf4
+    set $lavender #b7bdf8
+    set $text #cad3f5
+    set $subtext1 #b8c0e0
+    set $subtext0 #a5adcb
+    set $overlay2 #939ab7
+    set $overlay1 #8087a2
+    set $overlay0 #6e738d
+    set $surface2 #5b6078
+    set $surface1 #494d64
+    set $surface0 #363a4f
+    set $base #24273a
+    set $mantle #1e2030
+    set $crust #181926
+  '';
 }

@@ -1,4 +1,4 @@
-{config, pkgs, ... }:
+{ config, pkgs, assets, ... }:
 {
   imports = [
     ./starship.nix
@@ -15,7 +15,6 @@
 
     #cdf='find . -type d -print | fzf -i';
       cdf="cd \"$(find . -type d -print | fzf -i)\"";
-      togglerefresh="~/.config/sway/scripts/toggle_refresh_rate.sh";
       vpn="snxctl";
 
       AED="cd ~/UA/2o_ano/1o_semestre/AED/";
@@ -48,7 +47,7 @@
       TPJ="cd ~/UA/4o_ano/1o_semestre/TPJ/";
 
       kys="poweroff";
-      horario="img2sixel ~/Pictures/horarios/horario_4a1s.png";
+      horario="img2sixel ${assets}/horarios/horario_4a1s.png";
 
       ports="sudo ss -tulpn";
       nixfetch="fastfetch --logo ~/.config/nixos_neofetch_logo.txt --logo-color-1 blue --logo-color-2 cyan";
