@@ -140,6 +140,7 @@ in
 
     gobject-introspection
     playerctl
+    sway-audio-idle-inhibit
   ];
 
   programs.wireshark.enable = true;
@@ -286,6 +287,10 @@ in
       noto-fonts-color-emoji
       nerd-fonts.fira-code
       nerd-fonts.jetbrains-mono
+      nerd-fonts.hack
+      nerd-fonts.overpass
+      cozette
+      dejavu_fonts
     ];
     enableDefaultPackages = true;
   };

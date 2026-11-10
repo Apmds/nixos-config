@@ -1,4 +1,4 @@
 @theme "./themes/catppuccin.rasi"
 	configuration {
-	terminal: "foor";
+	terminal: "foot";
 	}
