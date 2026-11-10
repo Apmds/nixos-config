@@ -1,80 +1,6 @@
 { config, lib, pkgs, assets, ... }:
 let
-  toggleWaybar = pkgs.writeShellApplication {
-    name = "toggle-waybar";
-    runtimeInputs = [ pkgs.procps ];
-    text = ''
-      for PID in $(pgrep waybar); do
-        kill -s SIGUSR1 "$PID"
-      done
-    '';
-  };
-
-  toggleRefreshRate = pkgs.writeShellApplication {
-    name = "toggle-refresh-rate";
-    runtimeInputs = [ pkgs.jq pkgs.bc pkgs.sway ];
-    text = ''
-      DEBOUNCE_FILE="/tmp/toggle_refresh_rate.lock"
-      if [ -f "$DEBOUNCE_FILE" ]; then
-        LAST_RUN=$(cat "$DEBOUNCE_FILE")
-        CURRENT_TIME=$(date +%s)
-        if (( CURRENT_TIME - LAST_RUN < 1 )); then
-          exit 0
-        fi
-      fi
-      date +%s > "$DEBOUNCE_FILE"
-      MONITOR="eDP-1"
-      CURRENT_RATE=$(swaymsg -t get_outputs | jq -r ".[] | select(.name == \"$MONITOR\") | .current_mode.refresh")
-      NEW_RATE=0
-      if [ "$CURRENT_RATE" -eq 60019 ]; then NEW_RATE=144003; fi
-      if [ "$CURRENT_RATE" -eq 144003 ]; then NEW_RATE=60019; fi
-      sleep 0.2
-      swaymsg output "$MONITOR" mode 1920x1080@"$(bc -l <<< "$NEW_RATE/1000")"Hz
-    '';
-  };
-
-  cyclePowerProfiles = pkgs.writeShellApplication {
-    name = "cycle-power-profiles";
-    runtimeInputs = [ pkgs.power-profiles-daemon pkgs.libnotify ];
-    text = ''
-      current_mode=$(powerprofilesctl get)
-      modes=("power-saver" "balanced" "performance")
-      current_index=0
-      for i in "''${!modes[@]}"; do
-        if [[ "''${modes[$i]}" == "$current_mode" ]]; then
-          current_index=$i
-          break
-        fi
-      done
-      next_index=$(( (current_index + 1) % ''${#modes[@]} ))
-      next_mode=''${modes[$next_index]}
-      powerprofilesctl set "$next_mode"
-      notify-send "Power Profile Switcher" "Switched from $current_mode to $next_mode"
-    '';
-  };
-
-  swayScreenshot = pkgs.writeShellApplication {
-    name = "sway-screenshot";
-    runtimeInputs = [ pkgs.grim pkgs.slurp pkgs.wl-clipboard ];
-    text = ''
-      grim -g "$(slurp)" - | wl-copy
-    '';
-  };
-
-  wofiPowermenu = pkgs.writeShellApplication {
-    name = "wofi-powermenu";
-    runtimeInputs = [ pkgs.wofi pkgs.gawk ];
-    text = ''
-      entries="⇠ Logout\n⏾ Suspend\n⭮ Reboot\n⏻ Shutdown"
-      selected=$(echo -e "$entries" | wofi --width 250 --height 240 --dmenu --cache-file /dev/null | awk '{print tolower($2)}')
-      case $selected in
-        logout)   exec sway exit ;;
-        suspend)  exec systemctl suspend ;;
-        reboot)   exec systemctl reboot ;;
-        shutdown) exec systemctl poweroff ;;
-      esac
-    '';
-  };
+  scripts = import ./scripts.nix { inherit pkgs; };
 in
 {
   imports = [
@@ -166,7 +92,7 @@ in
 
         "${modifier}+r" = "mode resize";
         "${modifier}+Insert" = "exec swaylock -i ${assets}/wallpapers/pixel_night_sky.png";
-        "${modifier}+Backspace" = "exec ${wofiPowermenu}/bin/wofi-powermenu";
+        "${modifier}+Backspace" = "exec ${scripts.wofiPowermenu}/bin/wofi-powermenu";
         "${modifier}+Ctrl+Left" = "workspace prev";
         "${modifier}+Ctrl+Right" = "workspace next";
         "${modifier}+Ctrl+Shift+Left" = "move container to workspace prev";
@@ -175,10 +101,10 @@ in
         "${modifier}+Control+Alt+Left" = "move workspace to output left";
         "${modifier}+Control+Alt+Down" = "move workspace to output down";
         "${modifier}+Control+Alt+Up" = "move workspace to output up";
-        "${modifier}+Shift+s" = "exec ${swayScreenshot}/bin/sway-screenshot -m region --clipboard-only";
-        "${modifier}+Shift+r" = "exec ${toggleRefreshRate}/bin/toggle-refresh-rate";
-        "${modifier}+Shift+p" = "exec ${cyclePowerProfiles}/bin/cycle-power-profiles";
-        "${modifier}+g" = "exec ${toggleWaybar}/bin/toggle-waybar";
+        "${modifier}+Shift+s" = "exec ${scripts.swayScreenshot}/bin/sway-screenshot -m region --clipboard-only";
+        "${modifier}+Shift+r" = "exec ${scripts.toggleRefreshRate}/bin/toggle-refresh-rate";
+        "${modifier}+Shift+p" = "exec ${scripts.cyclePowerProfiles}/bin/cycle-power-profiles";
+        "${modifier}+g" = "exec ${scripts.toggleWaybar}/bin/toggle-waybar";
         "${modifier}+t" = "exec network_manager_ui";
         "${modifier}+c" = "exec cliphist list | tofi -c $HOME/.config/tofi/config_clipboard | cliphist decode | wl-copy";
         "${modifier}+Tab" = "mode swtchr; exec swtchr";
