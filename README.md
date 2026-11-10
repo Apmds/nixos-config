@@ -4,7 +4,7 @@ This repository will contain all configurations from my NixOS system.
 
 A single `flake.nix` at the repo root covers both NixOS and home-manager. It is symlinked into `nixos/` and `home-manager/` so each tool finds it automatically. Note that flake lock updates (`nix flake update`) should be run from `~/.config` (the repository root).
 
-Private assets (wallpapers, schedules, etc.) are fetched via the `assets` flake input (`git+ssh://git@github.com/Apmds/nixos-config-assets.git`) with `flake = false`.
+Some private assets (wallpapers, schedules, etc.) are fetched via the `assets` flake input. Swap that input for another if needed, but it will probably require you to change the paths where the `assets` input is used.
 
 The NixOS system config lives in the [nixos](nixos/) directory and is symlinked at `/etc/nixos`.
 
@@ -48,11 +48,29 @@ If you don't want secure boot enabled, you can either set `boot.loader.limine.se
 
 ### Home-manager setup
 
+Because the `assets` flake input pulls from a private repository via SSH, an SSH key must be enrolled and added to GitHub before activating Home Manager.
+
+```bash
+# 1. Generate an SSH key
+ssh-keygen -t ed25519 -C "your_email@example.com"
+
+# 2. Add the key to ssh-agent
+ssh-add ~/.ssh/id_ed25519
+
+# 3. Copy public key and add it to your GitHub account (Settings -> SSH and GPG keys)
+cat ~/.ssh/id_ed25519.pub
+
+# 4. Verify access
+ssh -T git@github.com
+```
+
+Bootstrap home-manager and activate the config with:
+
 ```bash
 nix run home-manager/master -- switch
 ```
 
-This bootstraps home-manager and activates the config. From then on, `home-manager switch` works directly.
+From then on, `home-manager switch` works directly.
 
 ## Nvidia
 
