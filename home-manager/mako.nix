@@ -4,7 +4,7 @@
     enable = true;
 
     settings = {
-      font="Cozette 11";
+      font = "sans-serif 11";
       format="<b>%a ⏵</b> %s\\n%b";
       sort="-time";
       output="DP-2";

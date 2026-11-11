@@ -289,7 +289,6 @@ in
       nerd-fonts.jetbrains-mono
       nerd-fonts.hack
       nerd-fonts.overpass
-      cozette
       dejavu_fonts
     ];
     enableDefaultPackages = true;
